@@ -17,6 +17,10 @@
     3. No multi-region-specific GDPR and GDPR-like rulesets management
     4. No Retention/Legal Hold-related staff (in deep, like retention Jobs and schedules especially with interation with Disaster Recovery and/or Legal Hold procedures)
     5. External systems are excluded from System Context
+    6. No CDN/DDoS/Load Balancing staff here
+    7. No IaC sources here
+    8. No DR/HA/RTO/RPO/Backup related investigations here
+    9. No Avg/Max Throughput/Storage Capacity and Retention-related calculations here
 
 
 ## Assessment 1
@@ -24,7 +28,7 @@
 
 ## Assessment 2
     2. Rules related to the Domain that should be implemented at Domain CLEAN layer
-    3. Adjustable rules should be stored at DB
+    3. Adjustable/Programmable rules should be stored at DB
     4. Domain-specific rules should be covered with unit tests
     5. Adjustable rules should be covered with unit tests and integration tests with mock DB
 
@@ -33,7 +37,7 @@
         1. As a Claim Document User I see Claim Document Store main page
         2. As a Claim Document User I see empty Claims list at the main page
         3. As a Claim Document User I see Login button at the main page
-        4. As a Claim Document User I see logged user Link at the main page
+        4. As a Claim Document User I see logged user profile Link at the main page
         5. As a Claim Document User I see Login form on Login button click
         6. As a Claim Document User I see logged user name Link on successful authentication
         7. As authenticated Claim Document User I see user Claim List on the main page
@@ -58,7 +62,7 @@
         25. As a Claim Admin User I see Claim Document Store main page
         26. As a Claim Admin User I see empty Claims list at the main page
         27. As a Claim Admin User I see Login button at the main page
-        28. As a Claim Admin User I see logged user Link at the main page
+        28. As a Claim Admin User I see logged Admin user profile Link at the main page
         29. As a Claim Admin User I see Login form on Login button click
         30. As a Claim Admin User I see logged user name Link on successful authentication
         31. As a Claim Admin User I see User list at Claim Document Store main page

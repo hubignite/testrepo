@@ -15,6 +15,7 @@
     2. No PII/PHI-related staff regarding physical security, infrastructure setup, DR requirements etc.
     3. No multi-region-specific GDPR and GDPR-like rulesets management
     4. No Retention/Legal Hold-related staff (in deep, like retention Jobs and schedules especially with interation with Disaster Recovery and/or Legal Hold procedures)
+    5. External systems are excluded from System Context
 
 
 ## Assessment 1

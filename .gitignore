@@ -3,3 +3,4 @@
 .git/
 .gitattributes
 docker.txt
+workspace.json

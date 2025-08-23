@@ -14,8 +14,27 @@ workspace "Claim Document Storage" "Single Region System Context with Roles" {
         
         claimDocumentStore = softwareSystem "Claim Document Storage" {
             webapp = container "Web Application"
+            blob = container "Blob Storage (MinIO)" {
+                tags "PII", "PHI"
+            }
+            db = container "PostgreSQL DB" {
+                tags "PII"
+            }
             user -> webapp "Submit and Update Documents"
             claimAdmin -> webapp "Manage Claim Documents"
+
+        }
+
+        adIDP = softwareSystem "AD/OIDC Identity Provider" {
+            tags "PII"
+            idp = container "Identity Provider"
+            claimAdmin -> idp "Authenticate, get token"
+        }
+        
+        extIDP1  = softwareSystem "Google Identity Provider" {
+            tags "PII"
+            extIdp = container "Identity Provider"
+            user -> extIdp "Authenticate, get token"
         }
 
         user -> webapp "List Claims" #?
@@ -29,6 +48,9 @@ workspace "Claim Document Storage" "Single Region System Context with Roles" {
         claimAdmin -> webapp "View User Claim Document"
         claimAdmin -> webapp "List User Claim Documents"
         claimAdmin -> webapp "Delete User Claim Document"
+
+        webapp -> db "Store Claim Document DB"
+        webapp -> blob "Store Claim Blob Objects"
     }
 
     views {

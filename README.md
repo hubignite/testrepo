@@ -5,10 +5,11 @@
 ### PoC design notes
     1. Use GitHub test repo *testrepo*
     2. Use C4 diagramm to design architecture PoC top-bottom
-    3. Use Structurizr or similar Model-as-a-Code approach
+    3. Use Structurizr or similar Model-as-a-Code approach with VS Code
     4. Use CLEAN with emphasis on DDD core in the PoC, once it has reach ruleset
     5. Use minimal code prototyping
     6. Commit model and impolementation PoC-s into the test repo
+
 
 ### Assumptions
     1. Single-region/location/authority - it is not mentioned. It might be main assessment point, but once it's not mentioned, then extracted.
@@ -19,8 +20,13 @@
 
 
 ## Assessment 1
+    1. Consider Blob storage engines like MinIO etc for files to get better throughput comparing to traditional SQL engines
 
 ## Assessment 2
+    2. Rules related to the Domain that should be implemented at Domain CLEAN layer
+    3. Adjustable rules should be stored at DB
+    4. Domain-specific rules should be covered with unit tests
+    5. Adjustable rules should be covered with unit tests and integration tests with mock DB
 
 ## Initial Task List PoC
 ### Document Storage

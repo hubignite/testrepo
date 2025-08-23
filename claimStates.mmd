@@ -1,0 +1,14 @@
+---
+title: Claim States
+---
+stateDiagram-v2
+    [*] --> New
+    New --> InProgress: assignAgent [AgentAssigned]
+    InProgress --> UnderReview: submitAllDocs [DocsSubmitted]
+
+    UnderReview --> Approved: approve [ValidForApprove]
+    UnderReview --> Rejected: reject
+
+    New --> Cancelled: cancel [ValidCancelTiming or AdminOverride]
+    InProgress --> Cancelled: cancel [ValidCancelTiming or AdminOverride]
+    UnderReview --> Cancelled: cancel [ValidCancelTiming or AdminOverride]

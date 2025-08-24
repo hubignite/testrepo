@@ -11,6 +11,18 @@
     6. Use minimal code prototyping
     7. Commit model and impolementation PoC-s into the test repo
 
+#### Assessment 1 Assumptions
+    1. Use Postgres or any other relational DB for structured part of data.
+    2. Consider Blob storage engine like MinIO etc for files to get better throughput comparing to traditional SQL engines. 
+       This would also allow to implement more optimal backup and scaling options
+
+#### Assessment 2 Assumptions
+    1. Rules related to the Domain that should be implemented at Domain CLEAN layer
+    2. Adjustable/Programmable rules should be stored at DB
+    3. Domain-specific rules should be covered with unit tests
+    4. Adjustable rules should be covered with unit tests and integration tests with mock DB
+
+
 
 ### Common Assumptions
     1. Single-region/location/authority - it is not mentioned. It might be the main assessment point, but once it's not mentioned, then extracted.
@@ -23,15 +35,6 @@
     8. No DR/HA/RTO/RPO/Backup related investigations here
     9. No Avg/Max Throughput/Storage Capacity and Retention-related calculations here
 
-
-## Assessment 1 Assumptions
-    1. Consider Blob storage engines like MinIO etc for files to get better throughput comparing to traditional SQL engines
-
-## Assessment 2 Assumptions
-    2. Rules related to the Domain that should be implemented at Domain CLEAN layer
-    3. Adjustable/Programmable rules should be stored at DB
-    4. Domain-specific rules should be covered with unit tests
-    5. Adjustable rules should be covered with unit tests and integration tests with mock DB
 
 ## Initial Task List PoC
 ### Document Storage

@@ -110,7 +110,64 @@ graph LR
   end
 ```
 
-### Class/Code and Diagramms
+### Class/Code Drafts
+
+#### DocumentController Class PoC
+```mermaid
+classDiagram
+    class DocumentsController {
+        +getDocument(id: string): Response
+        +uploadDocument(file: Blob, metadata: Object): Response
+        +deleteDocument(id: string): Response
+        +listDocuments(): Response
+    }
+
+    class DocumentUploadUseCase {
+        +uploadDocument(file: Blob, metadata: Object): Document
+    }
+
+    class DocumentGetUseCase {
+        +getDocument(id: string): Document
+    }
+
+    class DocumentListUseCase {
+        +listDocuments(): List<Document>
+    }
+
+    class DocumentDeleteUseCase {
+        +deleteDocument(id: string): void
+    }
+
+    class DocumentRepository {
+        +save(metadata: Object): Document
+        +retrieve(id: string): Document
+        +delete(id: string): void
+    }
+
+    class BlobStorage {
+        +save(file: Blob): string
+        +retrieve(id: string): Blob
+        +delete(id: string): void
+    }
+
+    DocumentsController --> DocumentUploadUseCase : delegates
+    DocumentsController --> DocumentListUseCase : delegates
+    DocumentsController --> DocumentGetUseCase : delegates
+    DocumentsController --> DocumentDeleteUseCase : delegates
+
+    DocumentUploadUseCase --> DocumentRepository : stores document
+    DocumentUploadUseCase --> BlobStorage : stores blob
+
+    DocumentListUseCase --> DocumentRepository : lists documents
+
+    DocumentGetUseCase --> DocumentRepository : retrieves document
+    DocumentGetUseCase --> BlobStorage : retrieves blob
+
+    DocumentDeleteUseCase --> DocumentRepository : deletes document
+    DocumentDeleteUseCase --> BlobStorage : deletes blob
+```
+
+
 
 #### File Upload Sequence PoC
 ```mermaid
@@ -148,4 +205,3 @@ stateDiagram-v2
     InProgress --> Cancelled: cancel [ValidCancelTiming or AdminOverride]
     UnderReview --> Cancelled: cancel [ValidCancelTiming or AdminOverride]
 ```
-

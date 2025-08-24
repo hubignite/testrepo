@@ -1,20 +1,23 @@
 graph LR
   linkStyle default fill:#ffffff
 
-  subgraph diagram ["Claim Document Storage - Web Application - Components"]
+  subgraph diagram ["Claim Document Storage - User Web Application - Components"]
     style diagram fill:#ffffff,stroke:#ffffff
 
-    subgraph 4 ["Web Application"]
+    12("<div style='font-weight: bold'>Blob Storage (MinIO)</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 12 fill:#438dd5,stroke:#2e6295,color:#ffffff
+    14("<div style='font-weight: bold'>PostgreSQL DB</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 14 fill:#438dd5,stroke:#2e6295,color:#ffffff
+
+    subgraph 4 ["User Web Application"]
       style 4 fill:#ffffff,stroke:#2e6295,color:#2e6295
 
       5("<div style='font-weight: bold'>Claim Documents Controller</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
       style 5 fill:#85bbf0,stroke:#5d82a8,color:#000000
       6("<div style='font-weight: bold'>Claim Document UseCases</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
       style 6 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      7("<div style='font-weight: bold'>Claim Document Services</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      7("<div style='font-weight: bold'>Claim Document Repository</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
       style 7 fill:#85bbf0,stroke:#5d82a8,color:#000000
-      8("<div style='font-weight: bold'>Claim Document Repository</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
-      style 8 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
 
   end

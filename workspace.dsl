@@ -11,7 +11,7 @@ workspace "Claim Document Storage" "Single Region System Context with Roles" {
         }
         
         claimDocumentStore = softwareSystem "Claim Document Storage" {
-            webapp = container "Web Application" {
+            userWebApp = container "User Web Application" {
                 claimDocController  = component "Claim Documents Controller" {
                     tags "REST API"
                     properties {
@@ -22,13 +22,26 @@ workspace "Claim Document Storage" "Single Region System Context with Roles" {
                 claimDocUseCases = component "Claim Document UseCases" {
                     tags "Application"
                 }
-                claimDocServices = component "Claim Document Services" {
-                    tags "Application"
-                }
                 claimDocRepo = component "Claim Document Repository" {
                     tags "Application"
                 }
             }
+            adminWebApp = container "Admin Web Application" {
+                claimAdminDocController  = component "Admin Documents Controller" {
+                    tags "REST API"
+                    properties {
+                        "Class" "DocumentsController"
+                        "FilePath" "/DocumentsController.cs"
+                    }
+                }
+                claimAdminDocUseCases = component "Claim Admin Document UseCases" {
+                    tags "Application"
+                }
+                claimAdminDocRepo = component "Claim Admin Document Repository" {
+                    tags "Application"
+                }
+            }
+
             blob = container "Blob Storage (MinIO)" {
                 tags "PII", "PHI"
                 blobController  = component "Blob S3 API Controller" {
@@ -38,8 +51,8 @@ workspace "Claim Document Storage" "Single Region System Context with Roles" {
             db = container "PostgreSQL DB" {
                 tags "PII"
             }
-            user -> webapp "Submit and Update Documents"
-            claimAdmin -> webapp "Manage Claim Documents"
+            user -> userWebApp "Submit and Update Documents"
+            claimAdmin -> adminWebApp "Manage Claim Documents"
         }
 
         adIDP = softwareSystem "AD/OIDC Identity Provider" {
@@ -54,20 +67,25 @@ workspace "Claim Document Storage" "Single Region System Context with Roles" {
             user -> extIdp "Authenticate, get token"
         }
 
-        user -> webapp "List Claims" #?
-        user -> webapp "Submit Claim Documents"
-        user -> webapp "View Claim Document"
-        user -> webapp "List Claim Documents"
-        user -> webapp "Delete Claim Document"
+        user -> userWebApp "List Claims" #?
+        user -> userWebApp "Submit Claim Documents"
+        user -> userWebApp "View Claim Document"
+        user -> userWebApp "List Claim Documents"
+        user -> userWebApp "Delete Claim Document"
 
-        claimAdmin -> webapp "List User Claims" #??
-        claimAdmin -> webapp "Submit User Claim Documents"
-        claimAdmin -> webapp "View User Claim Document"
-        claimAdmin -> webapp "List User Claim Documents"
-        claimAdmin -> webapp "Delete User Claim Document"
+        claimAdmin -> adminWebApp "List Users" #??
+        claimAdmin -> adminWebApp "List User Claims" #??
+        claimAdmin -> adminWebApp "Submit User Claim Documents"
+        claimAdmin -> adminWebApp "View User Claim Document"
+        claimAdmin -> adminWebApp "List User Claim Documents"
+        claimAdmin -> adminWebApp "Delete User Claim Document"
 
-        webapp -> db "Store Claim Document DB"
-        webapp -> blob "Store Claim Blob Objects"
+        userWebApp -> db "Store Claim Document DB"
+        userWebApp -> blob "Store Claim Blob Objects"
+
+        adminWebApp -> db "Store Claim Document DB"
+        adminWebApp -> blob "Store Claim Blob Objects"
+
     }
 
     views {
@@ -84,14 +102,28 @@ workspace "Claim Document Storage" "Single Region System Context with Roles" {
             autolayout lr
         }
 
-        component webapp {
+        component userWebApp {
             include claimDocController
             include claimDocUseCases
-            include claimDocServices
             include claimDocRepo
+
+            include db
+            include blob
 
             autolayout lr
         }
+
+        component adminWebApp {
+            include claimAdminDocController
+            include claimAdminDocUseCases
+            include claimAdminDocRepo
+
+            include db
+            include blob
+
+            autolayout lr
+        }
+
 
         component blob {
             include blobController

@@ -1,14 +1,23 @@
 graph LR
   linkStyle default fill:#ffffff
 
-  subgraph diagram ["Claim Document Storage - Blob Storage (MinIO) - Components"]
+  subgraph diagram ["Claim Document Storage - Admin Web Application - Components"]
     style diagram fill:#ffffff,stroke:#ffffff
 
-    subgraph 9 ["Blob Storage (MinIO)"]
-      style 9 fill:#ffffff,stroke:#2e6295,color:#2e6295
+    12("<div style='font-weight: bold'>Blob Storage (MinIO)</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 12 fill:#438dd5,stroke:#2e6295,color:#ffffff
+    14("<div style='font-weight: bold'>PostgreSQL DB</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 14 fill:#438dd5,stroke:#2e6295,color:#ffffff
 
-      10("<div style='font-weight: bold'>Blob S3 API Controller</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+    subgraph 8 ["Admin Web Application"]
+      style 8 fill:#ffffff,stroke:#2e6295,color:#2e6295
+
+      10("<div style='font-weight: bold'>Claim Admin Document UseCases</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
       style 10 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      11("<div style='font-weight: bold'>Claim Admin Document Repository</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 11 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      9("<div style='font-weight: bold'>Admin Documents Controller</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 9 fill:#85bbf0,stroke:#5d82a8,color:#000000
     end
 
   end

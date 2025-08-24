@@ -1,7 +1,14 @@
 graph LR
   linkStyle default fill:#ffffff
 
-  subgraph diagram ["Claim Document Storage - PostgreSQL DB - Components"]
+  subgraph diagram ["Claim Document Storage - Blob Storage (MinIO) - Components"]
     style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 12 ["Blob Storage (MinIO)"]
+      style 12 fill:#ffffff,stroke:#2e6295,color:#2e6295
+
+      13("<div style='font-weight: bold'>Blob S3 API Controller</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 13 fill:#85bbf0,stroke:#5d82a8,color:#000000
+    end
 
   end

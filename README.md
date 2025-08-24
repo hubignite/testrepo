@@ -5,8 +5,8 @@
 ### PoC design notes
     1. Use GitHub test repo *testrepo*
     2. Use C4 diagramm to design architecture PoC top-bottom
-    3. Use Structurizr or similar Model-as-a-Code approach with VS Code (mistake?)
-    4. User Mermaid for State/Class/etc diagrams
+    3. Use Structurizr Model-as-a-Code approach with VS Code (mistake?)
+    4. Use Mermaid for combined C4 and other State/Class/etc diagrams
     5. Use CLEAN with emphasis on DDD core in the PoC, once it has reach ruleset
     6. Use minimal code prototyping
     7. Commit model and impolementation PoC-s into the test repo
@@ -14,7 +14,7 @@
 #### Assessment 1 Assumptions
     1. Use Postgres or any other relational DB for structured part of data.
     2. Consider Blob storage engine like MinIO etc for files to get better throughput comparing to traditional SQL engines. 
-       This would also allow to implement more optimal backup and scaling options
+       This would also allow to implement more optimal backup, scaling and legal-related options
 
 #### Assessment 2 Assumptions
     1. Rules related to the Domain that should be implemented at Domain CLEAN layer

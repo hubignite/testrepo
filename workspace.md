@@ -3,7 +3,7 @@
 ### System Context
 ```mermaid
 graph LR
-  linkStyle default fill:#ffffff
+  linkStyle default fill:#ffffff stroke:0
 
   subgraph diagram ["Claim Document Storage - System Context"]
     style diagram fill:#ffffff,stroke:#ffffff
@@ -23,7 +23,7 @@ graph LR
 ### Containers
 ```mermaid
 graph LR
-  linkStyle default fill:#ffffff
+  linkStyle default fill:#ffffff stroke:0
 
   subgraph diagram ["Claim Document Storage - Containers"]
     style diagram fill:#ffffff,stroke:#ffffff
@@ -64,7 +64,7 @@ graph LR
 ### Components
 ```mermaid
 graph LR
-  linkStyle default fill:#ffffff
+  linkStyle default fill:#ffffff stroke:0
 
   subgraph diagram ["Claim Document Storage - Web Application - Components"]
     style diagram fill:#ffffff,stroke:#ffffff
@@ -86,7 +86,7 @@ graph LR
 ```
 ```mermaid
 graph LR
-  linkStyle default fill:#ffffff
+  linkStyle default fill:#ffffff stroke:0
 
   subgraph diagram ["Claim Document Storage - Blob Storage (MinIO) - Components"]
     style diagram fill:#ffffff,stroke:#ffffff
@@ -102,7 +102,7 @@ graph LR
 ```
 ```mermaid
 graph LR
-  linkStyle default fill:#ffffff
+  linkStyle default fill:#ffffff stroke:0
 
   subgraph diagram ["Claim Document Storage - PostgreSQL DB - Components"]
     style diagram fill:#ffffff,stroke:#ffffff
@@ -167,7 +167,64 @@ classDiagram
     DocumentDeleteUseCase --> BlobStorage : deletes blob
 ```
 
+#### Document Upload UseCase pseudo-C# draft PoC
 
+```csharp
+   /// <summary>
+   /// UseCase [Clean]
+   /// Handles uploading of a new Document to an existing Claim
+   /// </summary>
+   public class UploadDocumentUseCase
+   {
+       private readonly IDocumentRepository _repository;
+       private readonly IClaimRepository _claimRepository;
+       private readonly IDocumentBlobRepository _blobRepository;
+       private readonly IDocumentUploadValidator _documentUploadValidator;
+       private readonly IClaimValidator _claimValidator;
+       private readonly IMapper _mapper;
+
+       public UploadDocumentUseCase(
+           IDocumentRepository repository,
+           IClaimRepository claimRepository,
+           IDocumentBlobRepository blobRepository,
+           IDocumentUploadValidator documentUploadValidator,
+           IClaimValidator claimValidator,
+           IMapper mapper)
+       {
+           _repository = repository;
+           _claimRepository = claimRepository;
+           _blobRepository = blobRepository;
+           _documentUploadValidator = documentUploadValidator;
+           _claimValidator = claimValidator;
+           _mapper = mapper;
+       }
+
+       /// <summary>
+       /// Performs Document uploading logic, including mappings and validations.
+       /// </summary>
+       /// <param name="dto">Document DTO model that contains Blob and Metadata</param>
+       public async DocumentUploadResultDto UploadDocumentAsync(DocumentUploadDto dto)
+       {
+           var document = _mapper.ToDomain(dto);
+           
+           _documentUploadValidator.Validate(document);
+
+           var claim  = await _claimRepository.GetClaimAsync(document);
+
+           _claimValidator.CanAcceptNewDocument(claim);
+
+           var saveTask = _repository.SaveAsync(document);
+           var blobSaveTask = _blobRepository.SaveAsync(document);
+
+           await Task.WhenAll([saveTask, blobSaveTask]);
+
+           // TODO:
+           // exception handling etc
+
+           return _mapper.ToDto(saveTask.Result, blobSaveTask.Result);
+       }
+   }
+```
 
 #### File Upload Sequence PoC
 ```mermaid

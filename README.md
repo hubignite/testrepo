@@ -6,7 +6,7 @@
     1. Use GitHub test repo *testrepo*
     2. Use C4 diagramm to design architecture PoC top-bottom
     3. Use Structurizr Model-as-a-Code approach with VS Code (mistake?)
-    4. Use Mermaid for combined C4 and other State/Class/etc diagrams
+    4. Use Mermaid for combined C4 and other State/Class/etc diagrams. C4 icon export to Mermaid should be fixed (like User and DB icons instead of boxes)
     5. Use CLEAN with emphasis on DDD core in the PoC, once it has reach ruleset
     6. Use minimal code prototyping
     7. Commit model and impolementation PoC-s into the test repo
@@ -15,6 +15,13 @@
     1. Use Postgres or any other relational DB for structured part of data.
     2. Consider Blob storage engine like MinIO etc for files to get better throughput comparing to traditional SQL engines. 
        This would also allow to implement more optimal backup, scaling and legal-related options
+    3. Task list is drafted here below. Main idea: "reviewable" cross-layer items, including if needed UI->DB PRs, per layer Task break-down might be applied to each of the tasks, like this:
+        1. DB: see Document Type Column added to DB
+        2. API: see new Type column is mapped to EF
+        3. API: see Type is loaded for the Document
+        4. API: etc
+        5. UI: see Document type field is filled with data loaded from DB
+        6. UI: validation etc
 
 #### Assessment 2 Assumptions
     1. Rules related to the Claim and Document Domain that should be implemented at Domain CLEAN layer

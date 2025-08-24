@@ -5,7 +5,7 @@
 graph LR
   linkStyle default fill:#ffffff stroke:0
 
-  subgraph diagram ["Claim Document Storage - System Context"]
+  subgraph diagram ["Claim Document Storage"]
     style diagram fill:#ffffff,stroke:#ffffff
 
     1["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Policy Holder and/or<br />Claimant. Submits and Views<br />Claim Documents.</div>"]
@@ -25,7 +25,7 @@ graph LR
 graph LR
   linkStyle default fill:#ffffff stroke:0
 
-  subgraph diagram ["Claim Document Storage - Containers"]
+  subgraph diagram ["Claim Document Storage"]
     style diagram fill:#ffffff,stroke:#ffffff
 
     1["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Policy Holder and/or<br />Claimant. Submits and Views<br />Claim Documents.</div>"]
@@ -71,7 +71,7 @@ graph LR
 graph LR
   linkStyle default fill:#ffffff stroke:0
 
-  subgraph diagram ["Claim Document Storage - User Web Application - Components"]
+  subgraph diagram ["Claim Document Storage - User Web Application"]
     style diagram fill:#ffffff,stroke:#ffffff
 
     12("<div style='font-weight: bold'>Blob Storage (MinIO)</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
@@ -96,7 +96,7 @@ graph LR
 graph LR
   linkStyle default fill:#ffffff stroke:0
 
-  subgraph diagram ["Claim Document Storage - Admin Web Application - Components"]
+  subgraph diagram ["Claim Document Storage - Admin Web Application"]
     style diagram fill:#ffffff,stroke:#ffffff
 
     12("<div style='font-weight: bold'>Blob Storage (MinIO)</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")

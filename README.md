@@ -17,12 +17,10 @@
        This would also allow to implement more optimal backup, scaling and legal-related options
 
 #### Assessment 2 Assumptions
-    1. Rules related to the Domain that should be implemented at Domain CLEAN layer
-    2. Adjustable/Programmable rules should be stored at DB
-    3. Domain-specific rules should be covered with unit tests
+    1. Rules related to the Claim and Document Domain that should be implemented at Domain CLEAN layer
+    2. Some rules might have some DB-stored logic or config
+    3. Domain-specific rules with no stored data should be covered with unit tests
     4. Adjustable rules should be covered with unit tests and integration tests with mock DB
-
-
 
 ### Common Assumptions
     1. Single-region/location/authority - it is not mentioned. It might be the main assessment point, but once it's not mentioned, then extracted.
@@ -34,6 +32,7 @@
     7. No IaC sources here
     8. No DR/HA/RTO/RPO/Backup related investigations here
     9. No Avg/Max Throughput/Storage Capacity and Retention-related calculations here
+    10. Document type-specific UI rendering is excluded at this stage.
 
 
 ## Initial Task List PoC
